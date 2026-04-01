@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TubeDigest — AI Video Summarizer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Background canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">▶</span>
+      <span class="logo-text">TubeDigest</span>
+    </div>
+    <nav class="nav-hint">AI-Powered Video Intelligence</nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-eyebrow">Stop watching. Start knowing.</div>
+    <h1 class="hero-title">
+      <span class="line1">YOUTUBE</span>
+      <span class="line2">SUMMARIZED</span>
+      <span class="line3">INSTANTLY</span>
+    </h1>
+    <p class="hero-sub">Paste any YouTube link. Get a beautiful breakdown of every key insight — in seconds.</p>
+
+    <!-- Input -->
+    <div class="input-wrapper">
+      <div class="input-box">
+        <span class="input-icon">🔗</span>
+        <input type="text" id="yt-url" placeholder="https://www.youtube.com/watch?v=..." autocomplete="off" spellcheck="false" />
+        <button id="summarize-btn" class="summarize-btn">
+          <span class="btn-text">Summarize</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+      <div class="input-underline"></div>
+    </div>
+
+    <div id="error-msg" class="error-msg hidden"></div>
+  </section>
+
+  <!-- Loading State -->
+  <div id="loading" class="loading hidden">
+    <div class="loading-inner">
+      <div class="spinner-ring"></div>
+      <div class="loading-text-wrap">
+        <p class="loading-label">Analyzing video</p>
+        <p id="loading-step" class="loading-step">Fetching transcript…</p>
+      </div>
+    </div>
+    <div class="loading-bar-track"><div class="loading-bar-fill" id="loading-bar"></div></div>
+  </div>
+
+  <!-- Result Section -->
+  <section id="result" class="result hidden">
+
+    <!-- Video Meta -->
+    <div class="video-meta-card">
+      <img id="video-thumb" class="video-thumb" src="" alt="thumbnail" />
+      <div class="video-meta-info">
+        <div class="video-badge">YouTube Video</div>
+        <h2 id="video-title" class="video-title"></h2>
+        <div class="video-meta-row">
+          <span id="video-channel" class="meta-chip channel-chip"></span>
+          <span id="video-duration" class="meta-chip"></span>
+          <span id="video-views" class="meta-chip"></span>
+        </div>
+        <p id="video-oneliner" class="video-oneliner"></p>
+      </div>
+    </div>
+
+    <!-- TL;DR -->
+    <div class="section-label"><span>01</span> TL;DR</div>
+    <div id="tldr-box" class="tldr-box">
+      <p id="tldr-text"></p>
+    </div>
+
+    <!-- Key Points Grid -->
+    <div class="section-label"><span>02</span> Key Points Covered</div>
+    <div id="points-grid" class="points-grid"></div>
+
+    <!-- Takeaways -->
+    <div class="section-label"><span>03</span> Top Takeaways</div>
+    <div id="takeaways-list" class="takeaways-list"></div>
+
+    <!-- Quotes -->
+    <div id="quotes-section" class="quotes-section hidden">
+      <div class="section-label"><span>04</span> Notable Quotes</div>
+      <div id="quotes-list" class="quotes-list"></div>
+    </div>
+
+    <!-- Sentiment / Tone Tag -->
+    <div class="meta-footer">
+      <div class="tone-badge-wrap">
+        <span class="tone-label">Tone:</span>
+        <span id="tone-badge" class="tone-badge"></span>
+      </div>
+      <button class="new-btn" id="new-btn">← Summarize Another</button>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>TubeDigest uses AI to analyze video transcripts. No video is stored. &nbsp;·&nbsp; Built with ♥ using Claude AI</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
